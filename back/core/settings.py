@@ -73,13 +73,13 @@ WSGI_APPLICATION = "core.wsgi.application"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': f'{os.environ.get("DATABASE_ENGINE")}',
-        'NAME': f'{os.environ.get("DATABASE_NAME")}',
-        'PASSWORD': f'{os.environ.get("DATABASE_PASSWORD")}',
-        'USER': f'{os.environ.get("DATABASE_USER")}',
-        'HOST': f'{os.environ.get("DATABASE_HOST")}',
-        'PORT': f'{os.environ.get("DATABASE_PORT")}'
+    "default": {
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": "dbteste",
+        "PASSWORD": 'root12345',
+        "USER": 'root',
+        "HOST": 'http: //localhost',
+        "PORT": '3306',
     }
 }
 
