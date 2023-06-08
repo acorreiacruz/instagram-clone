@@ -74,12 +74,12 @@ WSGI_APPLICATION = "core.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.mysql",
-        "NAME": "dbteste",
-        "PASSWORD": 'root12345',
-        "USER": 'root',
-        "HOST": 'http: //localhost',
-        "PORT": '3306',
+        "ENGINE": f"{os.environ.get('DATABASE_ENGINE')}",
+        "NAME": f"{os.environ.get('DATABASE_NAME')}",
+        "PASSWORD": f"{os.environ.get('DATABASE_PASSWORD')}",
+        "USER": f"{os.environ.get('DATABASE_USER')}",
+        "HOST": f"{os.environ.get('DATABASE_HOST')}",
+        "PORT": f"{os.environ.get('DATABASE_PORTPenv')}",
     }
 }
 
@@ -118,6 +118,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = "static/"
+
+# Media configuration
+MEDIA_URL = "media/"
+MEDIA_ROOT = f"{BASE_DIR}/media"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
