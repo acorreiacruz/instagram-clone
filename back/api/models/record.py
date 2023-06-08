@@ -1,5 +1,4 @@
 from django.db import models
-from rest_framework import serializers
 
 
 class Record(models.Model):
@@ -11,9 +10,3 @@ class Record(models.Model):
 
     class Meta:
         db_table = "record"
-
-
-class RecordSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Record
-        fields = "__all__"
