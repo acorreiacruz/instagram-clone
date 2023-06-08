@@ -76,9 +76,9 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
         "NAME": "dbteste",
-        "PASSWORD": 'root12345',
+        "PASSWORD": 'Drstone*521',
         "USER": 'root',
-        "HOST": 'http: //localhost',
+        "HOST": 'localhost',
         "PORT": '3306',
     }
 }
@@ -124,4 +124,7 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-CORS_ALLOWED_ORIGINS = ["*"]
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8080",
+    "http://localhost",
+]
