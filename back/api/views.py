@@ -1,4 +1,5 @@
-from api.models import Record, RecordSerializer
+from api.models import Record
+from api.serializers import RecordSerializer
 from django.db import transaction
 from rest_framework.request import HttpRequest
 from rest_framework import status
