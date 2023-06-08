@@ -21,12 +21,12 @@
                                     <!-- Username -->
                                     <div class="form-group col-md-12 mb-4">
                                         <input type="text" class="form-control input-lg" placeholder="Usuario"
-                                            v-model="usuario" required>
+                                            v-model="username" required>
                                     </div>
                                     <!-- Name -->
                                     <div class="form-group col-md-12 mb-4">
                                         <input type="text" class="form-control input-lg" placeholder="Nome Completo"
-                                            v-model="username" required />
+                                            v-model="name" required />
                                     </div>
                                     <!-- E-mail -->
                                     <div class="form-group col-md-12 mb-4">
@@ -54,44 +54,40 @@
 </template>
   
 <script>
+import axios from 'axios';
+
 export default {
-    data() {
-        return {
-            username: "",
-            fullname: "",
-            email: "",
-            password: "",
-            cpassword: "",
-        };
-    },
-    methods: {
-        submitForm() {
-            fetch("/api/register/", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    username: this.username,
-                    fullname: this.fullname,
-                    email: this.email,
-                    password: this.password,
-                    cpassword: this.cpassword,
-                }),
-            })
-                .then((response) => response.json())
-                .then((data) => {
-                    console.log(data);
-                    // Aqui você pode realizar as ações necessárias após o cadastro
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
-        },
-    },
+  data() {
+    return {
+      username: '',
+      name: '',
+      email: '',
+      password: ''
+    };
+  },
+  methods: {
+    submitForm() {
+      const formData = {
+        username: this.username,
+        name: this.name,
+        email: this.email,
+        password: this.password
+      };
+
+      axios.post('/api/records/', formData)
+        .then(response => {
+          console.log('Sucesso!', response.data);
+          // Aqui você pode adicionar código para redirecionar para outra página ou exibir uma mensagem de sucesso
+        })
+        .catch(error => {
+          console.error('Erro:', error.response.data);
+          // Aqui você pode adicionar código para exibir uma mensagem de erro ao usuário
+        });
+    }
+  }
 };
 </script>
-  
+
 <style>
-@import "@/assets/css/style.css";
+@import '~bootstrap/dist/css/bootstrap.css';
 </style>

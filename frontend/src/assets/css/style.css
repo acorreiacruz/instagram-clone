@@ -58,20 +58,6 @@ a:hover {
   text-transform: none;
 }
 
-/*=======================================================*
-#  Buttons
-*========================================================*/
-.btn {
-  color: #ffffff;
-  background-color: #4f3eb1;
-  border: none;
-}
-
-.btn:hover {
-  color: #ffffff;
-  background-color: #5845C4;
-  transition: all .3s ease;
-}
 
 /*=======================================================*
 #  Card
@@ -99,4 +85,19 @@ a:hover {
   background-color: transparent;
   flex-wrap: wrap;
   border-bottom: none;
+}
+
+/*=======================================================*
+#  Buttons
+*========================================================*/
+.btn {
+  color: #ffffff;
+  background-color: #4f3eb1;
+  border: none;
+}
+
+.btn:hover {
+  color: #ffffff;
+  background-color: #5845C4;
+  transition: all .3s ease;
 }
