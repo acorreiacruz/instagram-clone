@@ -18,30 +18,29 @@
                         <div class="card-body px-5 pb-5 pt-0">
                             <form @submit.prevent="submitForm">
                                 <div class="row">
+                                    <!-- Username -->
+                                    <div class="form-group col-md-12 mb-4">
+                                        <input type="text" class="form-control input-lg" placeholder="Usuario"
+                                            v-model="usuario" required>
+                                    </div>
                                     <!-- Name -->
                                     <div class="form-group col-md-12 mb-4">
-                                        <input type="text" class="form-control input-lg" aria-describedby="nameHelp"
-                                            placeholder="Nome" v-model="username" required />
+                                        <input type="text" class="form-control input-lg" placeholder="Nome Completo"
+                                            v-model="username" required />
                                     </div>
                                     <!-- E-mail -->
                                     <div class="form-group col-md-12 mb-4">
-                                        <input type="email" class="form-control input-lg" aria-describedby="emailHelp"
-                                            placeholder="E-mail" v-model="email" required />
+                                        <input type="email" class="form-control input-lg" placeholder="E-mail"
+                                            v-model="email" required />
                                     </div>
                                     <!-- Password -->
                                     <div class="form-group col-md-12 mb-4">
                                         <input type="password" class="form-control input-lg" placeholder="Senha"
                                             v-model="password" required />
                                     </div>
-                                    <!-- CPassword -->
-                                    <div class="form-group col-md-12 mb-4">
-                                        <input type="password" class="form-control input-lg" placeholder="Confirme a Senha"
-                                            v-model="cpassword" :pattern="`^${password}$`"
-                                            title="A confirmação de senha deve ser igual à senha" required />
-                                    </div>
                                     <div class="col-md-12">
                                         <div class="d-flex justify-content-center align-items-center">
-                                            <button @click="validarCampos" type="submit" class="btn mb-4">Cadastrar</button>
+                                            <button type="submit" class="btn mb-4">Cadastrar</button>
                                         </div>
                                     </div>
                                 </div>
@@ -93,6 +92,6 @@ export default {
 };
 </script>
   
-<style scoped>
+<style>
 @import "@/assets/css/style.css";
 </style>
