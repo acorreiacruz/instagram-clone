@@ -12,9 +12,9 @@ class ImageAPIView(APIView):
     def get_queryset(self):
         return Image.objects.all()
 
-    def get(self, request: HttpRequest) -> Response:
+    def get(self, request: HttpRequest, id: int = None) -> Response:
         try:
-            queryset = self.get_queryset()
+            queryset = self.get_queryset().filter(id=id) if id else self.get_queryset()
             serializer = ImageSerializer(instance=queryset, many=True)
             return Response(data=serializer.data, status=status.HTTP_200_OK)
         except Exception as error:

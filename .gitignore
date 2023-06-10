@@ -113,3 +113,4 @@ venv
 .vscode
 db.sqlite3
 migrations/
+media/
