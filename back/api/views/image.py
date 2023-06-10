@@ -1,62 +1,65 @@
-from api.models import Record
-from api.serializers import RecordSerializer
 from django.db import transaction
-from rest_framework.request import HttpRequest
 from rest_framework import status
+from rest_framework.request import HttpRequest
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from api.models import Image
+from api.serializers import ImageSerializer
 
-class RecordAPIView(APIView):
+
+class ImageAPIView(APIView):
     def get_queryset(self):
-        return Record.objects.all()
+        return Image.objects.all()
 
     def get(self, request: HttpRequest) -> Response:
         try:
             queryset = self.get_queryset()
-            serializer = RecordSerializer(instance=queryset, many=True)
+            serializer = ImageSerializer(instance=queryset, many=True)
             return Response(data=serializer.data, status=status.HTTP_200_OK)
         except Exception as error:
             return Response(
-                data={"error": f"Erro ao listar os Records: {str(error)}"},
+                data={"error": f"Erro ao listar Image: {str(error)}"},
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
     @transaction.atomic
     def post(self, request: HttpRequest) -> Response:
         try:
-            serializer = RecordSerializer(data=request.data)
+            serializer = ImageSerializer(data=request.data)
             serializer.is_valid(raise_exception=True)
             serializer.save()
-            return Response(data=serializer.data,status=status.HTTP_201_CREATED)
+            return Response(data=serializer.data, status=status.HTTP_201_CREATED)
         except Exception as error:
             return Response(
-                data={"error": f"Erro ao criar um Registro: {str(error)}"},
+                data={"error": f"Erro ao criar um Image: {str(error)}"},
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
     @transaction.atomic
     def delete(self, request: HttpRequest, id: int) -> Response:
         try:
-            record = self.get_queryset().get(id=id)
-            record.delete()
+            image = self.get_queryset().get(id=id)
+            image.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
         except Exception as error:
             return Response(
-                data={"error": f"Erro ao criar um Registro: {str(error)}"},
+                data={"error": f"Erro ao deletar um Image: {str(error)}"},
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
     @transaction.atomic
     def patch(self, request: HttpRequest, id: int) -> Response:
         try:
-            record = self.get_queryset().get(id=id)
-            serializer = RecordSerializer(instance=record, data=request.data, partial=True)
+            image = self.get_queryset().get(id=id)
+            serializer = ImageSerializer(
+                instance=image, data=request.data, partial=True
+            )
             serializer.is_valid(raise_exception=True)
             serializer.save()
             return Response(data=serializer.data, status=status.HTTP_200_OK)
         except Exception as error:
             return Response(
-                data={"error": f"Erro ao criar um Registro: {str(error)}"},
+                data={"error": f"Erro ao atualizar parcialmente um Image: {str(error)}"},
                 status=status.HTTP_400_BAD_REQUEST,
             )
